@@ -87,7 +87,9 @@ class IndexPage extends React.Component {
       anagrams: new Set()
     })
 
-    let originalWord = this.state.word.toLowerCase()
+    const normalize = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
+    let originalWord = normalize(this.state.word)
     let length = originalWord.length
 
     fetch('/words-by-length/' + length + '.txt').then((response) => {
@@ -100,11 +102,11 @@ class IndexPage extends React.Component {
         let words = {}
 
         for (let word of text.split('\n')) {
-          words[word.toLowerCase()] = word
+          words[normalize(word)] = word
         }
 
         const worker = new Worker('permutation-worker.js')
-        worker.postMessage(this.state.word.toLowerCase())
+        worker.postMessage(originalWord)
 
         worker.onmessage = (event) => {
           if (event.data == 0) {
