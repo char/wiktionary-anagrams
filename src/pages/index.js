@@ -87,7 +87,7 @@ class IndexPage extends React.Component {
       anagrams: new Set()
     })
 
-    const normalize = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    const normalize = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC').toLowerCase()
 
     let originalWord = normalize(this.state.word)
     let length = originalWord.length
