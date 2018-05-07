@@ -37,7 +37,7 @@ class IndexPage extends React.Component {
 
           <Form onSubmit={this.onSubmit}>
             <FormGroup>
-              <Input type='text' name='word' placeholder='mindset' value={this.state.word} onChange={this.handleWordInput}/>
+              <Input type='text' name='word' placeholder='Enter your word' value={this.state.word} onChange={this.handleWordInput}/>
               <FormFeedback>Please enter a valid word.</FormFeedback>
             </FormGroup>
           </Form>
