@@ -56,7 +56,7 @@ class IndexPage extends React.Component {
 
           { this.state.currentState === 'done' &&
             (<Container>
-              <p>Found { this.state.anagrams.size } anagram(s).</p>
+              <p>Found { this.state.anagrams.size } anagram{ this.state.anagrams.size == 1 ? "" : "s" }.</p>
 
               <ul>
                 { (() => {
