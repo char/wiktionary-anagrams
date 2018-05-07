@@ -19,7 +19,7 @@ class IndexPage extends React.Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('caching-worker.js')
     }
@@ -79,7 +79,7 @@ class IndexPage extends React.Component {
     this.setState({ word: event.target.value })
   }
 
-  async onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault()
 
     this.setState({
