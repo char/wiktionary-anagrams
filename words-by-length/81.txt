@@ -1,0 +1,3 @@
+1@InFinger-PalmDown-OpenB@CenterChesthigh_1@InFinger-PalmUp-OpenB@CenterChesthigh
+FlatB@IpsiChest-FingerUpPalmAcross_RoundHoriz_FlatB@ContraChest-FingerUpPalmAside
+SmallO@NearTipThumb-PalmDown-SmallO@CenterChesthigh-PalmUp_CirclesSurface_Contact
