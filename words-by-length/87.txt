@@ -1,4 +1,0 @@
-A@Sternumhigh-PalmDown-A@Sternumhigh-PalmDown_A@Chesthigh-PalmDown-A@Chesthigh-PalmDown
-BentV@InThumb-PalmDown-C@CenterChesthigh_BentV@InThumb-PalmDown-C@DistalCenterChesthigh
-S@Sternumhigh-PalmDown-S@Sternumhigh-PalmDown_S@Chesthigh-PalmDown-S@Chesthigh-PalmDown
-give_a_man_a_fish_and_he_can_eat_for_a_day,_teach_a_man_to_fish_and_he_can_eat_for_life
