@@ -9,6 +9,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "big-integer": "^1.6.28",
     "bootstrap": "^4.1.1",
     "gatsby": "^1.9.250",
     "gatsby-link": "^1.6.40",

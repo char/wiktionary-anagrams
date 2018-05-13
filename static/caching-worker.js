@@ -23,7 +23,7 @@ self.addEventListener('install', (event) => {
         const urlsToCache = []
 
         for (let i = 1; i <= 10; i++) {
-          urlsToCache.push("/words-by-length/" + i + ".txt")
+          urlsToCache.push("/words-by-product/" + i + ".txt")
         }
 
         cache.addAll(urlsToCache)

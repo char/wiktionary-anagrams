@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { Container, Navbar, NavbarBrand, Form, FormGroup, FormFeedback, Input, Alert } from 'reactstrap'
+import { normalizeWord, calculateLetterProduct } from '../util/util.js'
 
 class IndexPage extends React.Component {
 
@@ -54,6 +55,13 @@ class IndexPage extends React.Component {
             </Container>)
           }
 
+          { this.state.currentState === 'unsupported' && (
+            <Container>
+              <p>The word contains characters which are not supported as of yet by this anagram finder.</p>
+              <p>This could be that the word is written in an alphabet that does not yet have anagram optimization mapping.</p>
+            </Container>
+          ) }
+
           { this.state.currentState === 'done' &&
             (<Container>
               <p>Found { this.state.anagrams.size } anagram{ this.state.anagrams.size == 1 ? "" : "s" }.</p>
@@ -87,11 +95,43 @@ class IndexPage extends React.Component {
       anagrams: new Set()
     })
 
-    const normalize = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC').toLowerCase()
+    let word = normalizeWord(this.state.word)
+    let wordProduct = calculateLetterProduct(word)
+    let wordProductStr = wordProduct.toString()
 
-    let originalWord = normalize(this.state.word)
-    let length = originalWord.length
+    if (wordProduct.equals(0)) {
+      this.setState({ 'currentState': 'unsupported' })
+    }
 
+    fetch('/words-by-product/' + wordProduct.toString().length + '.txt').then((response) => {
+      response.text().then((text) => {
+        this.setState({
+          currentState: 'calculating'
+        })
+
+        let anagrams = new Set()
+
+        for (let entry of text.split('\n')) {
+          let entrySplit = entry.split(' ')
+
+          let entryWord = entrySplit.slice(0, entrySplit.length - 1).join(' ')
+          let entryProduct = entrySplit[entrySplit.length - 1]
+
+          if (entryProduct === wordProductStr) {
+            if (entryWord.toLowerCase() !== word.toLowerCase()) {
+              anagrams.add(entryWord.replace(/_/g, ' '))
+            }
+          }
+        }
+
+        this.setState({
+          'currentState': 'done',
+          anagrams: anagrams
+        })
+      })
+    })
+
+    /* let length = originalWord.length
     fetch('/words-by-length/' + length + '.txt').then((response) => {
       response.text().then((text) => {
         this.setState({
@@ -102,7 +142,7 @@ class IndexPage extends React.Component {
         let words = {}
 
         for (let word of text.split('\n')) {
-          words[normalize(word)] = word
+          words[normalizeWord(word)] = word
         }
 
         const worker = new Worker('permutation-worker.js')
@@ -124,7 +164,7 @@ class IndexPage extends React.Component {
           }
         }
       })
-    })
+    }) */
   }
 }
 

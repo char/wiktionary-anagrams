@@ -1,6 +1,5 @@
 # wiktionary-anagrams-specific files
-/static/words-all.txt
-/static/words-by-length/
+/static/words-by-product/
 
 # Logs
 logs
