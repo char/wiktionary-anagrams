@@ -130,41 +130,6 @@ class IndexPage extends React.Component {
         })
       })
     })
-
-    /* let length = originalWord.length
-    fetch('/words-by-length/' + length + '.txt').then((response) => {
-      response.text().then((text) => {
-        this.setState({
-          currentState: 'calculating'
-        })
-
-        let anagrams = new Set()
-        let words = {}
-
-        for (let word of text.split('\n')) {
-          words[normalizeWord(word)] = word
-        }
-
-        const worker = new Worker('permutation-worker.js')
-        worker.postMessage(originalWord)
-
-        worker.onmessage = (event) => {
-          if (event.data == 0) {
-            this.setState({
-              currentState: 'done',
-              anagrams: anagrams
-            })
-          } else {
-            let permutation = event.data
-
-            let wiktionaryWord = words[permutation]
-            if (wiktionaryWord && permutation !== originalWord) {
-              anagrams.add(wiktionaryWord)
-            }
-          }
-        }
-      })
-    }) */
   }
 }
 
